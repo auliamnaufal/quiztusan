@@ -6,7 +6,7 @@ import com.auliamnaufal.quiztusan.utils.Constant
 
 class SharedPreferences(context: Context) {
 
-    var sharedPreferences = context.getSharedPreferences(Constant.QUIZ_PREF, 0)
+    var sharedPreferences = context.getSharedPreferences(Constant.PREF_QUIZ, 0)
     val editor: SharedPreferences.Editor = sharedPreferences.edit()
 
     fun add(key: String, value: String){
@@ -15,6 +15,6 @@ class SharedPreferences(context: Context) {
     }
 
     fun getString(key: String): String? {
-        return sharedPreferences.getString(key, "1")
+        return sharedPreferences.getString(key, "0")
     }
 }
