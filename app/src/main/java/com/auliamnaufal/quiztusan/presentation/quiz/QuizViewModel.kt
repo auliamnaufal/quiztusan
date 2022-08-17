@@ -36,11 +36,8 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
         return repository.getString(Constant.PREF_PLAYER_NAME)
     }
 
-    fun addScoreOnPref() {
-        val previousScore = repository.getString(Constant.PREF_PLAYER_SCORE)?.toInt()
-        val result = previousScore?.plus(1)
-        addScore()
-        repository.add(Constant.PREF_PLAYER_SCORE, result.toString())
+    fun setScoreOnPref(score: String) {
+        repository.add(Constant.PREF_PLAYER_SCORE, score)
     }
 
     fun getScore(): String?{
@@ -95,7 +92,8 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
         quizRef.child(getPlayerName().toString()).addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    quizRef.child(getPlayerName().toString()).child("score").setValue(getScore())
+                    quizRef.child(getPlayerName().toString()).child("score").setValue(getScore() + 1)
+                    setScoreOnPref(getScore() + 1)
                 }
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(getApplication(), "error", Toast.LENGTH_SHORT).show()

@@ -53,7 +53,7 @@ class QuizActivity : AppCompatActivity() {
 
             btn2.setOnClickListener {
                 if(btn2.text == quiz.correctAnswer){
-                    viewModel.addScoreOnPref()
+                    viewModel.addScore()
                 }
                 val nextPosition = currentPosition.toInt() + 1
                 viewModel.setPosition(nextPosition.toString())
