@@ -35,6 +35,7 @@
             <Button
                 android:layout_width="150dp"
                 android:layout_height="70dp"
+                android:id="@+id/btn_1"
                 android:text="Benar" />
 
             <Space
@@ -46,6 +47,7 @@
             <Button
                 android:layout_width="150dp"
                 android:layout_height="70dp"
+                android:id="@+id/btn_2"
                 android:text="Benar" />
 
         </LinearLayout>
