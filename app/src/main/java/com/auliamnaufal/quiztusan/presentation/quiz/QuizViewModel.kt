@@ -1,4 +1,4 @@
-package com.auliamnaufal.quiztusan.viewmodel
+package com.auliamnaufal.quiztusan.presentation.quiz
 
 import android.app.Application
 import android.widget.Toast
