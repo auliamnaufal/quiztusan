@@ -8,13 +8,25 @@ object QuizDummy {
             "Kapankan Indonesia Merdeka?",
             "1945",
             "1495",
-            1
+            "1945"
         ),
         Quiz(
             "Siapakah Presiden Pertama Republik Indonesia?",
             "Naufal",
             "Soekarno",
-            2
+            "Soekarno"
+        ),
+        Quiz(
+            "Siapakah Presiden Pertama Republik Indonesia?",
+            "Naufal",
+            "Soekarno",
+            "Soekarno"
+        ),
+        Quiz(
+            "Siapakah Presiden Pertama Republik Indonesia?",
+            "Naufal",
+            "Soekarno",
+            "Soekarno"
         )
     )
 }
