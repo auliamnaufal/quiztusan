@@ -12,9 +12,17 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 
 class QuizViewModel(application: Application): AndroidViewModel(application) {
-    private var repository = QuizRepository()
+    private var repository = QuizRepository(application)
 
     private val quizRef = repository.getReference(Constant.REF_QUIZ_SCORE)
+
+    fun setPosition(value: String){
+        repository.add(Constant.PREF_CURRENT_POSITION, value)
+    }
+
+    fun getCurrentPosition(): String? {
+        return repository.getString(Constant.PREF_CURRENT_POSITION)
+    }
 
     fun getScoreboard(): MutableLiveData<List<Player>> {
         val listPlayer = MutableLiveData<List<Player>>()
