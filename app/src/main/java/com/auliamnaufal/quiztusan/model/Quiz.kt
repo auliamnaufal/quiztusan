@@ -1,6 +1,6 @@
-package com.auliamnaufal.quiztusan.presentation.quiz
+package com.auliamnaufal.quiztusan.model
 
-data class QuizQuestion(
+data class Quiz(
     val qustion: String,
     val answer1: String,
     val answer2: String,

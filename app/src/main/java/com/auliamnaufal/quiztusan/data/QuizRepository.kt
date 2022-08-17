@@ -1,4 +1,4 @@
-package com.auliamnaufal.quiztusan.repository
+package com.auliamnaufal.quiztusan.data
 
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase

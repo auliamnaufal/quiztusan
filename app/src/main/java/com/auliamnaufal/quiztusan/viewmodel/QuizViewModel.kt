@@ -5,7 +5,7 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.auliamnaufal.quiztusan.model.Player
-import com.auliamnaufal.quiztusan.repository.QuizRepository
+import com.auliamnaufal.quiztusan.data.QuizRepository
 import com.auliamnaufal.quiztusan.utils.Constant
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
