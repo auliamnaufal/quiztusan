@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "908154726289",
+    "project_id": "quiztusan",
+    "storage_bucket": "quiztusan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:908154726289:android:b58b0fe897f06340c8dc30",
+        "android_client_info": {
+          "package_name": "com.auliamnaufal.quiztusan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "908154726289-2s9k2g2n626u3llp2o70mvhm8gq44q2m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsEM8gTd1V0l_S_RvT7yKbfja_ublduKI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "908154726289-2s9k2g2n626u3llp2o70mvhm8gq44q2m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
