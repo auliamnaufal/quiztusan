@@ -14,9 +14,11 @@
         android:theme="@style/Theme.Quiztusan"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.result.ResultActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.quiz.QuizActivity"
-            android:exported="true" >
-
+            android:exported="true">
         </activity>
         <activity
             android:name=".MainActivity"
