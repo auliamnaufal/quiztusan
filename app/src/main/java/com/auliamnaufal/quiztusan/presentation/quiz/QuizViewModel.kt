@@ -20,12 +20,31 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
         repository.add(Constant.PREF_CURRENT_POSITION, "0")
     }
 
+    fun clearName(){
+        repository.add(Constant.PREF_PLAYER_NAME, "")
+    }
+
+    fun clearScore(){
+        repository.add(Constant.PREF_PLAYER_SCORE, "")
+    }
+
     fun setPosition(position: String){
         repository.add(Constant.PREF_CURRENT_POSITION, position)
     }
 
     fun getPlayerName(): String? {
         return repository.getString(Constant.PREF_PLAYER_NAME)
+    }
+
+    fun addScoreOnPref() {
+        val previousScore = repository.getString(Constant.PREF_PLAYER_SCORE)?.toInt()
+        val result = previousScore?.plus(1)
+        addScore()
+        repository.add(Constant.PREF_PLAYER_SCORE, result.toString())
+    }
+
+    fun getScore(): String?{
+        return repository.getString(Constant.PREF_PLAYER_SCORE)
     }
 
     fun setPlayerName(name: String){
@@ -57,16 +76,12 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
         return listPlayer
     }
 
-    fun addUsername(user: Player){
+    fun addUsername(name: String){
         quizRef.addValueEventListener(
             object: ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val name = user.name
-                    if (name != null) {
-                        quizRef.child(name).setValue(user)
-                    } else {
-                        Toast.makeText(getApplication(), "nama telah di gunakan", Toast.LENGTH_SHORT).show()
-                    }
+                    val player = Player(name, "0")
+                    quizRef.child(name).setValue(player)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -76,14 +91,11 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
         )
     }
 
-    fun addScore(name: String){
-        quizRef.child(name).addValueEventListener(
+    fun addScore(){
+        quizRef.child(getPlayerName().toString()).addValueEventListener(
             object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val previousScore = snapshot.getValue(Player::class.java)?.score
-                    if (previousScore != null) {
-                        quizRef.child(name).setValue(previousScore + 1)
-                    }
+                    quizRef.child(getPlayerName().toString()).child("score").setValue(getScore())
                 }
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(getApplication(), "error", Toast.LENGTH_SHORT).show()

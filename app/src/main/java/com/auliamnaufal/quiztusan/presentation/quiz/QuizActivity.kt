@@ -24,9 +24,11 @@ class QuizActivity : AppCompatActivity() {
         _binding = ActivityQuizBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+
         _viewmodel = ViewModelProvider(this)[QuizViewModel::class.java]
 
-//        viewModel.clearPosition()
+        viewModel.clearScore()
 
         setupView()
     }
@@ -36,17 +38,13 @@ class QuizActivity : AppCompatActivity() {
             val currentPosition = viewModel.getCurrentPosition()
             val quiz = listQuiz[currentPosition!!.toInt()]
 
-            val player = "Reihan"
-
             tvQuestion.text = quiz.qustion
             btn1.text = quiz.answer1
             btn2.text = quiz.answer2
 
             btn1.setOnClickListener {
                 if(btn1.text == quiz.correctAnswer){
-                    if (player != null) {
-                        viewModel.addScore(player)
-                    }
+                    viewModel.addScore()
                 }
                 val nextPosition = currentPosition.toInt() + 1
                 viewModel.setPosition(nextPosition.toString())
@@ -55,9 +53,7 @@ class QuizActivity : AppCompatActivity() {
 
             btn2.setOnClickListener {
                 if(btn2.text == quiz.correctAnswer){
-                    if (player != null) {
-                        viewModel.addScore(player)
-                    }
+                    viewModel.addScoreOnPref()
                 }
                 val nextPosition = currentPosition.toInt() + 1
                 viewModel.setPosition(nextPosition.toString())
