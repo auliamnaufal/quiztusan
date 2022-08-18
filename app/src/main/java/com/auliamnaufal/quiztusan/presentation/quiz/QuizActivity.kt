@@ -68,5 +68,7 @@ class QuizActivity : AppCompatActivity() {
         )
         finish()
         viewModel.clearPosition()
+        viewModel.clearScore()
+        viewModel.clearName()
     }
 }

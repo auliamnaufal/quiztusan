@@ -6,12 +6,14 @@
     android:padding="12dp">
 
     <TextView
+        android:id="@+id/tv_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
         android:textSize="32sp" />
 
     <TextView
+        android:id="@+id/tv_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="score"
