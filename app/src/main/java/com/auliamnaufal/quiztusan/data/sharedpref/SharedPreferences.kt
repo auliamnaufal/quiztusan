@@ -14,7 +14,16 @@ class SharedPreferences(context: Context) {
         editor.apply()
     }
 
+    fun add(key: String, value: Int){
+        editor.putInt(key, value)
+        editor.apply()
+    }
+
     fun getString(key: String): String? {
         return sharedPreferences.getString(key, "0")
+    }
+
+    fun getInt(key: String): Int {
+        return sharedPreferences.getInt(key, 0)
     }
 }

@@ -1,7 +1,6 @@
-package com.auliamnaufal.quiztusan.presentation.quiz
+package com.auliamnaufal.quiztusan.viewmodel
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.auliamnaufal.quiztusan.model.Player
@@ -17,7 +16,7 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
     private val quizRef = repository.getReference(Constant.REF_QUIZ_SCORE)
 
     fun clearPosition(){
-        repository.add(Constant.PREF_CURRENT_POSITION, "0")
+        repository.add(Constant.PREF_CURRENT_POSITION, 0)
     }
 
     fun clearName(){
@@ -28,7 +27,7 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
         repository.add(Constant.PREF_PLAYER_SCORE, "")
     }
 
-    fun setPosition(position: String){
+    fun setPosition(position: Int){
         repository.add(Constant.PREF_CURRENT_POSITION, position)
     }
 
@@ -36,20 +35,20 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
         return repository.getString(Constant.PREF_PLAYER_NAME)
     }
 
-    fun setScoreOnPref(score: String) {
+    fun setScoreOnPref(score: Int) {
         repository.add(Constant.PREF_PLAYER_SCORE, score)
     }
 
-    fun getScore(): String?{
-        return repository.getString(Constant.PREF_PLAYER_SCORE)
+    fun getScore(): Int {
+        return repository.getInt(Constant.PREF_PLAYER_SCORE)
     }
 
     fun setPlayerName(name: String){
         repository.add(Constant.PREF_PLAYER_NAME, name)
     }
 
-    fun getCurrentPosition(): String? {
-        return repository.getString(Constant.PREF_CURRENT_POSITION)
+    fun getCurrentPosition(): Int {
+        return repository.getInt(Constant.PREF_CURRENT_POSITION)
     }
 
     fun getScoreboard(): MutableLiveData<List<Player>> {
@@ -74,32 +73,14 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun addUsername(name: String){
-        quizRef.addValueEventListener(
-            object: ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    val player = Player(name, "0")
-                    quizRef.child(name).setValue(player)
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                }
-
-            }
-        )
+        val player = Player(name, "0")
+        quizRef.child(name).setValue(player)
+        setScoreOnPref(0)
     }
 
     fun addScore(){
-        quizRef.child(getPlayerName().toString()).addValueEventListener(
-            object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    quizRef.child(getPlayerName().toString()).child("score").setValue(getScore() + 1)
-                    setScoreOnPref(getScore() + 1)
-                }
-                override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(getApplication(), "error", Toast.LENGTH_SHORT).show()
-                }
-
-            }
-        )
+        val result = getScore()?.toInt()?.plus(1)
+        quizRef.child(getPlayerName().toString()).child("score").setValue(result)
+        setScoreOnPref(result)
     }
 }

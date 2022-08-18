@@ -6,6 +6,7 @@ import com.auliamnaufal.quiztusan.databinding.ActivityQuizBinding
 import com.auliamnaufal.quiztusan.databinding.ActivityResultBinding
 
 class ResultActivity : AppCompatActivity() {
+
     private var _binding: ActivityResultBinding? = null
     private val binding get() = _binding!!
 
@@ -13,5 +14,6 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 }

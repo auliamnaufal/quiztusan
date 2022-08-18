@@ -12,21 +12,27 @@ object QuizDummy {
         ),
         Quiz(
             "Siapakah Presiden Pertama Republik Indonesia?",
-            "Naufal",
+            "Jokowi",
             "Soekarno",
             "Soekarno"
         ),
         Quiz(
-            "Siapakah Presiden Pertama Republik Indonesia?",
-            "Naufal",
-            "Soekarno",
-            "Soekarno"
+            "Detik detik proklamasi di bacakan pada pukul...",
+            "10:00",
+            "20:00",
+            "10:00"
         ),
         Quiz(
-            "Siapakah Presiden Pertama Republik Indonesia?",
-            "Naufal",
-            "Soekarno",
-            "Soekarno"
+            "Di kota manakah berita penyerahan pasukan jepang terhadap sekutu pertama kali diketahui oleh para pemuda Indonesia",
+            "Brebes",
+            "Bandung",
+            "Bandung"
+        ),
+        Quiz(
+            "Berapa lama Belanda menjajah Indonesia... ",
+            "3,5 Abad",
+            "2,5 Abad",
+            "3,5 Abad"
         )
     )
 }

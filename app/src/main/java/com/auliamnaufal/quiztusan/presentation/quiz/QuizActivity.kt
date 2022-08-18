@@ -1,13 +1,13 @@
 package com.auliamnaufal.quiztusan.presentation.quiz
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.lifecycle.ViewModelProvider
-import com.auliamnaufal.quiztusan.R
 import com.auliamnaufal.quiztusan.data.local.QuizDummy
-import com.auliamnaufal.quiztusan.databinding.ActivityMainBinding
 import com.auliamnaufal.quiztusan.databinding.ActivityQuizBinding
+import com.auliamnaufal.quiztusan.presentation.result.ResultActivity
+import com.auliamnaufal.quiztusan.viewmodel.QuizViewModel
 
 class QuizActivity : AppCompatActivity() {
 
@@ -28,39 +28,45 @@ class QuizActivity : AppCompatActivity() {
 
         _viewmodel = ViewModelProvider(this)[QuizViewModel::class.java]
 
-        viewModel.clearScore()
-
         setupView()
     }
 
     private fun setupView() {
         binding.apply {
             val currentPosition = viewModel.getCurrentPosition()
-            val quiz = listQuiz[currentPosition!!.toInt()]
+            if(currentPosition >= listQuiz.size) { intentToResult() }
+            val quiz = listQuiz[currentPosition]
 
             tvQuestion.text = quiz.qustion
             btn1.text = quiz.answer1
             btn2.text = quiz.answer2
 
             btn1.setOnClickListener {
-                if(btn1.text == quiz.correctAnswer){
+                if (btn1.text == quiz.correctAnswer) {
                     viewModel.addScore()
                 }
-                val nextPosition = currentPosition.toInt() + 1
-                viewModel.setPosition(nextPosition.toString())
+                val nextPosition = currentPosition + 1
+                viewModel.setPosition(nextPosition)
                 recreate()
             }
 
             btn2.setOnClickListener {
-                if(btn2.text == quiz.correctAnswer){
+                if (btn2.text == quiz.correctAnswer) {
                     viewModel.addScore()
                 }
-                val nextPosition = currentPosition.toInt() + 1
-                viewModel.setPosition(nextPosition.toString())
+                val nextPosition = currentPosition + 1
+                viewModel.setPosition(nextPosition)
                 recreate()
             }
 
-
         }
+    }
+
+    private fun intentToResult() {
+        startActivity(
+            Intent(applicationContext, ResultActivity::class.java)
+        )
+        finish()
+        viewModel.clearPosition()
     }
 }

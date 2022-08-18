@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.auliamnaufal.quiztusan.databinding.ActivityMainBinding
 import com.auliamnaufal.quiztusan.presentation.quiz.QuizActivity
-import com.auliamnaufal.quiztusan.presentation.quiz.QuizViewModel
+import com.auliamnaufal.quiztusan.viewmodel.QuizViewModel
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         _viewmodel = ViewModelProvider(this)[QuizViewModel::class.java]
 
-        viewModel.clearPosition()
-
         setUpView()
     }
 
@@ -36,6 +34,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.addUsername(name)
                 viewModel.setPlayerName(name)
                 startActivity(Intent(this@MainActivity, QuizActivity::class.java))
+                finish()
             }
         }
     }

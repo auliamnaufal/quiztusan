@@ -17,7 +17,15 @@ class QuizRepository(context: Context) {
         pref.add(key, value)
     }
 
+    fun add(key: String, value: Int){
+        pref.add(key, value)
+    }
+
     fun getString(key: String): String? {
         return pref.getString(key)
+    }
+
+    fun getInt(key: String): Int {
+        return pref.getInt(key)
     }
 }
