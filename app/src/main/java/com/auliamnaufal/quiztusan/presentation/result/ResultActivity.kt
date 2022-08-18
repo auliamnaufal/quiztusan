@@ -2,9 +2,12 @@ package com.auliamnaufal.quiztusan.presentation.result
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.auliamnaufal.quiztusan.databinding.ActivityQuizBinding
 import com.auliamnaufal.quiztusan.databinding.ActivityResultBinding
+import com.auliamnaufal.quiztusan.presentation.result.adapter.ResultAdapter
 import com.auliamnaufal.quiztusan.viewmodel.QuizViewModel
 
 class ResultActivity : AppCompatActivity() {
@@ -26,6 +29,14 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun setUpView() {
-
+        viewModel.getScoreboard().observe(this){
+            Log.i("setUpView55", "setUpView55: $it")
+            binding.rvLeaderboard.apply {
+                val mAdapter = ResultAdapter()
+                layoutManager = LinearLayoutManager(applicationContext)
+                adapter = mAdapter
+                mAdapter.setData(it)
+            }
+        }
     }
 }

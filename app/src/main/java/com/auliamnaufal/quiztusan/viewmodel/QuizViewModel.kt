@@ -80,7 +80,7 @@ class QuizViewModel(application: Application): AndroidViewModel(application) {
 
     fun addScore(){
         val result = getScore()?.toInt()?.plus(1)
-        quizRef.child(getPlayerName().toString()).child("score").setValue(result)
+        quizRef.child(getPlayerName().toString()).child("score").setValue(result.toString())
         setScoreOnPref(result)
     }
 }

@@ -10,6 +10,11 @@ class ResultAdapter:RecyclerView.Adapter<ResultAdapter.ViewHolder>() {
     var listPlayer = arrayListOf<Player>()
     class ViewHolder(val binding: ItemLeaderboardBinding): RecyclerView.ViewHolder(binding.root)
 
+    fun setData(list: List<Player>){
+        listPlayer.clear()
+        listPlayer.addAll(list)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=
         ViewHolder(ItemLeaderboardBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 

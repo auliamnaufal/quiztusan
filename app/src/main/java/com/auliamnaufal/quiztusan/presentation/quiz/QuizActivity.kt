@@ -34,31 +34,33 @@ class QuizActivity : AppCompatActivity() {
     private fun setupView() {
         binding.apply {
             val currentPosition = viewModel.getCurrentPosition()
-            if(currentPosition >= listQuiz.size) { intentToResult() }
-            val quiz = listQuiz[currentPosition]
+            if(currentPosition >= listQuiz.size) {
+                intentToResult()
+            } else {
+                val quiz = listQuiz[currentPosition]
 
-            tvQuestion.text = quiz.qustion
-            btn1.text = quiz.answer1
-            btn2.text = quiz.answer2
+                tvQuestion.text = quiz.qustion
+                btn1.text = quiz.answer1
+                btn2.text = quiz.answer2
 
-            btn1.setOnClickListener {
-                if (btn1.text == quiz.correctAnswer) {
-                    viewModel.addScore()
+                btn1.setOnClickListener {
+                    if (btn1.text == quiz.correctAnswer) {
+                        viewModel.addScore()
+                    }
+                    val nextPosition = currentPosition + 1
+                    viewModel.setPosition(nextPosition)
+                    recreate()
                 }
-                val nextPosition = currentPosition + 1
-                viewModel.setPosition(nextPosition)
-                recreate()
-            }
 
-            btn2.setOnClickListener {
-                if (btn2.text == quiz.correctAnswer) {
-                    viewModel.addScore()
+                btn2.setOnClickListener {
+                    if (btn2.text == quiz.correctAnswer) {
+                        viewModel.addScore()
+                    }
+                    val nextPosition = currentPosition + 1
+                    viewModel.setPosition(nextPosition)
+                    recreate()
                 }
-                val nextPosition = currentPosition + 1
-                viewModel.setPosition(nextPosition)
-                recreate()
             }
-
         }
     }
 
@@ -66,9 +68,9 @@ class QuizActivity : AppCompatActivity() {
         startActivity(
             Intent(applicationContext, ResultActivity::class.java)
         )
-        finish()
         viewModel.clearPosition()
         viewModel.clearScore()
         viewModel.clearName()
+        finish()
     }
 }
